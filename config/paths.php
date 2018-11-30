@@ -1,3 +1,3 @@
 <?php
 
-define('BASEURL', 'https://csalex-weblog.herokuapp.com/views/');
+define('BASEURL', 'https://csalex-weblog.herokuapp.com/');
