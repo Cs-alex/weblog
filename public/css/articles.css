@@ -25,13 +25,7 @@ article {
     align-items: center;
     flex-direction: column;
 }
-.upvote, .downvote {
-    color: grey;
-}
-.comments {
-    color: #027bff;
-}
-.visitors {
+.upvote, .downvote, .comments, .visitors {
     color: grey;
 }
 .upvote:hover {
@@ -72,4 +66,24 @@ article {
 .article-small {
     width: 100%;
     height: 100%;
+}
+.upvote-count {
+    font-size: 30px;
+    margin-right: 10px;
+    color: rgb(5, 223, 0);
+}
+.downvote-count {
+    font-size: 30px;
+    margin-right: 10px;
+    color: rgb(223, 0, 5);
+}
+.comment-count {
+    color: #007bff;
+    font-size: 30px;
+    margin-right: 10px;
+}
+.visitor-count {
+    color: grey;
+    font-size: 30px;
+    margin-right: 10px;
 }

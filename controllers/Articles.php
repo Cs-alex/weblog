@@ -12,13 +12,8 @@ class Articles extends Controller {
 
     public function article($article) {
         $article_id = $this->model->getArticleID($article);
-        $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
-        $visitor_id = $this->model->checkUserToken($token);
-        if ($visitor_id == false) {
-            $this->model->insertUserToken($token);
-        } else {
-            $this->model->updateUserLogin($token);
-        }
+        $visitor_id = $this->model->checkUserToken(md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR'])));
+        $this->users();
         $this->model->addVisited($article_id['id'], $visitor_id['id']);
         $this->view->voted = $this->model->checkIfVoted($article_id['id'], $visitor_id['id']);
         $this->view->article = $this->model->loadArticle($article_id['id']);

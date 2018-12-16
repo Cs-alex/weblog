@@ -2,14 +2,14 @@
         <link rel="stylesheet" href="<?php echo BASEURL; ?>public/css/articles.css">
         <script type="text/javascript" src="<?php echo BASEURL; ?>public/js/articles.js"></script>
     </head>
-    <body>
+    <body class="<?php echo $this->scheme['color_scheme'] == null ? 'body-scheme-0' : 'body-'.$this->scheme['color_scheme']; ?>">
         <div class="container-fluid text-center">
             <?php require 'views/header.php'; ?>
             <main>
-                <article>
+                <article class="<?php echo $this->scheme['color_scheme'] == null ? 'scheme-0' : $this->scheme['color_scheme']; ?>">
                     <div class="row mb-3 mt-3">
                         <div class="col-12">
-                            <h1 class="lit-text-heavy"><?php echo $this->article[0]['title']; ?></h1>
+                            <h1 class="title <?php echo $this->scheme['color_scheme'] == null ? 'text-large-scheme-0' : 'text-large-'.$this->scheme['color_scheme']; ?>"><?php echo $this->article[0]['title']; ?></h1>
                         </div>
                     </div>
                     <?php foreach ($this->components as $components): ?>
@@ -25,7 +25,7 @@
                                     <?php if ($components['article_order'] != 0): ?>
                                         <img src="<?= BASEURL.$components['article_image']; ?>">
                                     <?php endif; ?>
-                                    <?php echo $components['image_seo'] != null ? '<span class="font-italic lit-text-light">'.$components['image_seo'].'</span>' : ''; ?>
+                                    <?php echo $components['image_seo'] != null ? '<span class="text-small font-italic text-small-'.$this->scheme['color_scheme'].'">'.$components['image_seo'].'</span>' : ''; ?>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="col-6 text-right">
-                            <span class="lit-text-light"><?php echo str_replace('-', '.', $this->article[0]['created_at']); ?></span>
+                            <span class="text-small <?php echo $this->scheme['color_scheme'] == null ? 'text-small-scheme-0' : 'text-small-'.$this->scheme['color_scheme']; ?>"><?php echo str_replace('-', '.', $this->article[0]['created_at']); ?></span>
                         </div>
                         <div class="w-100">
                             <img src="<?php echo BASEURL; ?>/public/img/divider.png">

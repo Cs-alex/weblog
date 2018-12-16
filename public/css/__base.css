@@ -1,7 +1,6 @@
 html {
     min-height: 100%;
     position: relative;
-    /* cursor: url(../img/pen3.png), auto !important; */
 }
 body {
     height: 100%;
@@ -26,6 +25,7 @@ footer {
     bottom: 0;
     width: 100%;
     height: 40px;
+    font-size: 20px;
     line-height: 40px;
     position: absolute;
     text-align: center;
@@ -52,42 +52,33 @@ button:focus, input:focus {
 .btn-primary:hover {
     background-color: rgb(105, 105, 105) !important;
 }
-.lit-text-light {
-    font-size: 2rem;
-    font-family: LiteratureLight;
-}
-.lit-text-heavy {
-    font-size: 4rem;
-    font-family: LiteratureHeavy;
-}
 .header-div {
     width: 150px;
     height: 70px;
     max-height: 70px;
     justify-content: center;
 }
-#nav-wrapper {
+.nav-wrapper {
     width: 150px;
 }
-#flag {
-    display: flex;
-}
-#flag span {
-    width: 50px;
-}
-#nav-wrapper:hover > #nav, .header-div:hover, #nav-wrapper:hover > .flag-icon {
-    opacity: 0.4;
+.nav-wrapper:hover > #nav, .nav-wrapper:hover > #settings {
+    opacity: 0.7;
     cursor: pointer;
     transition: 0.3s;
+    filter: brightness(70%);
     background-color: white;
 }
-#nav-wrapper:hover > .header-div > .header-font, .header-div:hover .header-font, #nav-wrapper:hover > .flag-icon {
+.nav-wrapper:hover > .header-div > .header-font {
     color: black;
     transition: 0.3s;
     filter: brightness(70%);
 }
+.nav-wrapper:hover > #flag {
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: rgba(189, 188, 186, 0.7);
+}
 .header-font {
-    color: white;
     padding: 5px;
     font-size: 60px;
 }
@@ -105,9 +96,16 @@ button:focus, input:focus {
     position: absolute;
     border: 1px solid white;
 }
+.nav-dropdown {
+    left: 0;
+    top: 70px;
+    z-index: 2;
+    display: none;
+    position: absolute;
+}
 .nav-dropdown-link {
     float: left;
-    width: 200px;
+    width: 250px;
     height: 60px;
     color: black;
     font-size: 3rem;
@@ -115,9 +113,13 @@ button:focus, input:focus {
     transition: all 0.3s ease;
     background-color: white;
 }
-.nav-dropdown-link:hover {
+.nav-dropdown-link:hover, .option:hover {
     color: white;
     background-color: rgb(155, 155, 155);
+}
+.color-scheme {
+    width: 100%;
+    border: none;
 }
 .error {
     color: red;
@@ -137,50 +139,24 @@ button:focus, input:focus {
     border-right: 20px solid transparent;
     border-top: 20px solid rgb(235, 235, 235);
 }
-.upvote-count {
-    font-size: 30px;
-    margin-right: 10px;
-    color: rgb(5, 223, 0);
-}
-.downvote-count {
-    font-size: 30px;
-    margin-right: 10px;
-    color: rgb(223, 0, 5);
-}
-.comment-count {
-    color: #007bff;
-    font-size: 30px;
-    margin-right: 10px;
-}
-.visitor-count {
-    color: grey;
-    font-size: 30px;
-    margin-right: 10px;
-}
 #search {
     width: 50%;
     margin: 15px;
     height: 40px;
 }
+#search-icon {
+    left: 10px;
+    top: calc(50% - 13px);
+    font-size: 26px;
+    position: absolute;
+}
+#search-input {
+    width: 100%;
+    font-size: 1.5rem;
+    padding-left: 45px;
+}
 #search-input::-webkit-input-placeholder {
     font-size: 1.5rem;
-    font-family: LiteratureHeavy;
-}
-#search-input:-ms-input-placeholder {
-    font-size: 1.5rem;
-    font-family: LiteratureHeavy;
-}
-#search-input::-ms-input-placeholder {
-    font-size: 1.5rem;
-    font-family: LiteratureHeavy;
-}
-#search-input:-moz-placeholder {
-    font-size: 1.5rem;
-    font-family: LiteratureHeavy;
-}
-#search-input::-moz-placeholder {
-    font-size: 1.5rem;
-    font-family: LiteratureHeavy;
 }
 #profile-img {
     width: 50px;
@@ -194,13 +170,6 @@ button:focus, input:focus {
 }
 #nav {
     z-index: 2;
-}
-#nav-dropdown {
-    left: 0;
-    top: 70px;
-    z-index: 2;
-    display: none;
-    position: absolute;
 }
 #nav-overlay {
     top: 0;
@@ -224,24 +193,133 @@ button:focus, input:focus {
     border-radius: 50%;
     background-color: red;
 }
-#settings-wrapper {
+#settings {
+    display: flex;
     position: relative;
+    flex-direction: column;
 }
-#settings-ul {
-    display: none;
+#settings-dropdown {
+    position: absolute;
 }
-#settings-ul li {
-    z-index: 2;
-    background-color: white;
+#flag {
+    display: flex;
 }
-#settings-ul i {
+#flag span {
+    width: 65px;
+}
+/********** Színsémák **********/
+/*Body*/
+.body-scheme-1 {
+    background: url("../img/black_bg_img.jpg") no-repeat;
+}
+body.body-scheme-2 {
+    background-size: cover;
+}
+.body-scheme-2 {
+    background: url("../img/space_bg_img.jpeg") no-repeat;
+}
+/*Header-font*/
+.header-scheme-0 {
+    color: white;
+}
+.header-scheme-1 {
+    color: rgb(200, 0, 0);
+}
+.header-scheme-2 {
+    color: rgb(10, 125, 170);
+}
+/*Cikkek*/
+.scheme-0 {
+    color: black;
+    background-color: rgba(246, 245, 242, 0.9);
+}
+.scheme-1 {
+    font-family: monospace;
+    color: rgb(200, 0, 0);
+    background-image: linear-gradient(rgba(50, 50, 40, 0.9), rgba(0, 0, 0, 0.9));
+}
+.scheme-2 {
+    color: rgb(10, 125, 170);
+    font-family: DeepSpace;
+    background-color: rgba(8, 31, 44, 0.9);
+}
+/*Linkek és dátumok / szöveg*/
+.text-large-scheme-0 {
+    font-size: 4rem;
+    font-family: Literature;
+    color: black;
+}
+.text-large-scheme-1 {
+    font-size: 4rem;
+    font-family: monospace;
+    color: rgb(200, 0, 0);
+}
+.text-large-scheme-2 {
+    font-size: 4rem;
+    font-family: DeepSpace;
+    color: rgb(10, 125, 170);
+}
+.text-small-scheme-0 {
+    font-size: 2rem;
+    font-family: Literature;
+}
+.text-small-scheme-1 {
+    font-size: 2rem;
+    font-family: monospace;
+}
+.text-small-scheme-2 {
+    font-size: 2rem;
+    font-family: DeepSpace;
+}
+/*Ablakok és divek*/
+.menu-scheme-0 {
+    color: black;
+    font-family: Literature;
+    background-color: rgb(246, 245, 242);
+}
+.menu-scheme-1 {
+    font-family: monospace;
+    color: rgb(200, 0, 0);
+    background-color: rgb(50, 50, 40);
+}
+.menu-scheme-2 {
+    color: rgb(10, 125, 170);
+    font-family: DeepSpace;
+    background-color: rgb(8, 31, 44);
+}
+/*Kereső*/
+.search-scheme-0 {
+    color: black;
+    background-color: rgb(246, 245, 242);
+    border: 1px solid black;
+    font-family: Literature;
+}
+.search-scheme-1 {
+    color: rgb(200, 0, 0);
+    background-color: rgb(50, 50, 40);
+    border: 1px solid rgb(200, 0, 0);
+    font-family: monospace;
+}
+.search-scheme-2 {
+    color: rgb(10, 125, 170);
+    font-family: DeepSpace;
+    background-color: rgb(8, 31, 44);
+    border: 1px solid rgb(10, 125, 170);
+    font-family: DeepSpace;
+}
+/*Egyéb*/
+.footer-scheme-0, .footer-scheme-2 {
     color: #007bff;
 }
+.footer-scheme-1 {
+    color: silver;
+}
+/********** Fontok **********/
 @font-face {
-    font-family: 'LiteratureLight';
-    src: url("../css/fonts/learning_curve_regular_ot_tt.ttf") format('truetype');
+    font-family: 'Literature';
+    src: url("../css/fonts/learning_curve_bold_ot_tt.ttf") format('truetype');
 }
 @font-face {
-    font-family: 'LiteratureHeavy';
-    src: url("../css/fonts/learning_curve_bold_ot_tt.ttf") format('truetype');
+    font-family: 'DeepSpace';
+    src: url("../css/fonts/Changa-ExtraLight.ttf") format('truetype');
 }

@@ -6,7 +6,7 @@ class DashboardModel extends Model {
         parent::__construct();
     }
 
-    public function autoLoadArticles($search) {
+    public function autoLoadArticles($search, $order) {
         $sql = "SELECT article.*,
                 (SELECT article__component.article_text
                     FROM article__component
@@ -33,36 +33,13 @@ class DashboardModel extends Model {
                     OR article__component.image_seo LIKE '%$search%'"
                     : "")."
                 GROUP BY article.id
-                ORDER BY article.created_at DESC
+                ".($order == 0 ? " ORDER BY article.created_at DESC" : " ORDER BY article.created_at ASC")."
         ";
         $stmt = $this->db->prepare($sql);
         $stmt->bindparam(':search', $search);
         $stmt->execute();
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $data;
-    }
-
-    public function checkUserToken($token) {
-        $sql = "SELECT id FROM visitors WHERE token = :token";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindparam(':token', $token, PDO::PARAM_STR);
-        $stmt->execute();
-        $data = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $data;
-    }
-
-    public function insertUserToken($user) {
-        $sql = "INSERT INTO visitors (token, last_login) VALUES (:user, NOW())";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindparam(':user', $user, PDO::PARAM_STR);
-        $stmt->execute();
-    }
-
-    public function updateUserLogin($user) {
-        $sql = "UPDATE visitors SET last_login = NOW() WHERE token = :user";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindparam(':user', $user);
-        $stmt->execute();
     }
 
 }

@@ -7,26 +7,18 @@ class Dashboard extends Controller {
     }
 
     public function index() {
-        $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
-        $visitor = $this->model->checkUserToken($token);
-        if ($visitor == false) {
-            $this->model->insertUserToken($token);
-        } else {
-            $this->model->updateUserLogin($token);
-        }
-        $this->view->articles = $this->model->autoLoadArticles(NULL);
+        $this->users();
+        $this->view->articles = $this->model->autoLoadArticles(NULL, 0);
         $this->view->render('dashboard/index');
     }
 
+    public function order() {
+        $this->view->articles = $this->model->autoLoadArticles(NULL, $_POST['data']);
+    }
+
     public function search() {
-        $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
-        $visitor = $this->model->checkUserToken($token);
-        if ($visitor == false) {
-            $this->model->insertUserToken($token);
-        } else {
-            $this->model->updateUserLogin($token);
-        }
-        $this->view->articles = $this->model->autoLoadArticles($_GET['q']);
+        $this->users();
+        $this->view->articles = $this->model->autoLoadArticles($_GET['q'], $_POST['data']);
         $this->view->render('dashboard/index');
     }
 

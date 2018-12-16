@@ -1,26 +1,26 @@
 <?php require 'views/head.php'; ?>
         <link rel="stylesheet" href="<?php echo BASEURL; ?>public/css/about.css">
     </head>
-    <body>
+    <body class="<?php echo $this->scheme['color_scheme'] == null ? 'body-scheme-0' : 'body-'.$this->scheme['color_scheme']; ?>">
         <div class="container-fluid text-center">
             <?php require 'views/header.php'; ?>
             <main>
                 <div class="row">
                     <div class="col-7">
-                        <article class="intro">
+                        <article class="<?php echo $this->scheme['color_scheme'] == null ? 'scheme-0' : $this->scheme['color_scheme']; ?>">
                             <div class="row">
-                                <div class="col-12 lit-text-heavy">Csende Bálint Alex</div>
+                                <div class="col-12 title <?php echo $this->scheme['color_scheme'] == null ? 'text-large-scheme-0' : 'text-large-'.$this->scheme['color_scheme']; ?>">Csende Bálint Alex</div>
                             </div>
                             <div class="row">
-                                <div class="col-12 lit-text-light">Programozó & Fejlesztő</div>
+                                <div class="col-12 text-small <?php echo $this->scheme['color_scheme'] == null ? 'text-small-scheme-0' : 'text-small-'.$this->scheme['color_scheme']; ?>">Programozó & Fejlesztő</div>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-12">
                                     <div class="poem">
-                                        <p class="lit-text-light"><i class="fas fa-quote-left mr-2"></i>Adott, egy kezdet,</p>
-                                        <p class="lit-text-light">Karma, méltó s mostoha,</p>
-                                        <p class="lit-text-light">Hagyd, csak egyet tegyél!</p>
-                                        <p class="lit-text-light">Küzdj, s bízva bízzál!<i class="fas fa-quote-right ml-2"></i></p>
+                                        <p class="text-small <?php echo $this->scheme['color_scheme'] == null ? 'text-small-scheme-0' : 'text-small-'.$this->scheme['color_scheme']; ?>"><i class="fas fa-quote-left mr-2"></i>Adott, egy kezdet,</p>
+                                        <p class="text-small <?php echo $this->scheme['color_scheme'] == null ? 'text-small-scheme-0' : 'text-small-'.$this->scheme['color_scheme']; ?>">Karma, méltó s mostoha,</p>
+                                        <p class="text-small <?php echo $this->scheme['color_scheme'] == null ? 'text-small-scheme-0' : 'text-small-'.$this->scheme['color_scheme']; ?>">Hagyd, csak egyet tegyél!</p>
+                                        <p class="text-small <?php echo $this->scheme['color_scheme'] == null ? 'text-small-scheme-0' : 'text-small-'.$this->scheme['color_scheme']; ?>">Küzdj, s bízva bízzál!<i class="fas fa-quote-right ml-2"></i></p>
                                     </div>
                                 </div>
                             </div>
