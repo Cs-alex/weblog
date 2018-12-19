@@ -56,9 +56,9 @@ article {
     line-height: 50px;
     position: relative;
 }
-.option {
+.option:not(:last-child) {
     border-width: 1px;
-    border-top-style: solid;
+    border-bottom-style: solid;
     transition: all 0.2s ease;
 }
 .select-arrow {
