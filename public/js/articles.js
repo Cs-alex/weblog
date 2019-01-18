@@ -7,7 +7,7 @@ $(document).ready(function() {
         var seo = window.location.pathname.split('/');
         $.ajax({
             type: 'POST',
-            url: 'Articles/articleVote/' + seo[4],
+            url: '/Articles/articleVote/' + seo[4],
             data: { data: vote },
             success: function(result) {
                 var count = JSON.parse(result);
