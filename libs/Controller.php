@@ -29,7 +29,8 @@ class Controller {
     public function setScheme() {
         $scheme = $_POST['data'];
         $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
-        $this->model->setColorScheme($token, $scheme);
+        echo $scheme.' - '.$token;
+        // $this->model->setColorScheme($token, $scheme);
     }
 
 }
