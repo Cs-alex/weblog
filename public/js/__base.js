@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    console.log('/' + window.location.pathname.split('/')[2] + '/setScheme');
+
     // Header menü és beállítások hover
     $('.nav-wrapper').hover(function() {
         $('.nav-dropdown').hide();
