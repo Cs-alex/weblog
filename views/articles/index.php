@@ -48,7 +48,7 @@
                                     <div class="article-btn comments" id="new-article-comment">
                                         <i class="fas fa-comment-alt"></i>
                                     </div>
-                                    <span class="comment-count disqus-comment-count" data-disqus-url="http://localhost/WeBlog/articles/article/<?php echo $this->article[0]['seo']; ?>"></span>
+                                    <span class="comment-count disqus-comment-count" data-disqus-url="https://csalex.herokuapp.com/Articles/article/<?php echo $this->article[0]['seo']; ?>"></span>
                                     <!-- Látogatók -->
                                     <div class="article-btn visitors">
                                         <i class="fas fa-eye"></i>

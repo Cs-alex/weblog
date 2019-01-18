@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="col-8 article-wrapper text-left">
                                     <div>
-                                        <a href="<?php echo BASEURL; ?>articles/article/<?= $article['seo']; ?>" class="title <?php echo $this->scheme['color_scheme'] == null ? 'text-large-scheme-0' : 'text-large-'.$this->scheme['color_scheme']; ?>"><?= $article['title']; ?></a>
+                                        <a href="<?php echo BASEURL; ?>Articles/article/<?= $article['seo']; ?>" class="title <?php echo $this->scheme['color_scheme'] == null ? 'text-large-scheme-0' : 'text-large-'.$this->scheme['color_scheme']; ?>"><?= $article['title']; ?></a>
                                     </div>
                                     <p><?= $article['txt']; ?></p>
                                     <div>
@@ -46,7 +46,7 @@
                                             </div>
                                             <div class="d-inline count">
                                                 <i class="fas fa-comment-alt"></i>
-                                                <span class="disqus-comment-count" data-disqus-url="http://localhost/WeBlog/articles/article/<?= $article['seo']; ?>"></span>
+                                                <span class="disqus-comment-count" data-disqus-url="https://csalex.herokuapp.com/Articles/article/<?= $article['seo']; ?>"></span>
                                             </div>
                                             <div class="d-inline count">
                                                 <i class="fas fa-eye"></i>

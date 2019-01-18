@@ -1,6 +1,6 @@
 <header class="row">
     <div class="col-6" id="header-left">
-        <a href="<?php echo BASEURL; ?>dashboard">
+        <a href="<?php echo BASEURL; ?>Dashboard">
             <img src="<?php echo BASEURL; ?>public/img/logo.png">
         </a>
         <div class="nav-wrapper">
@@ -8,7 +8,7 @@
                 <i class="fas fa-bars header-font <?php echo $this->scheme['color_scheme'] == null ? 'header-scheme-0' : 'header-'.$this->scheme['color_scheme']; ?>"></i>
             </div>
             <nav id="links-dropdown" class="nav-dropdown">
-                <a href="<?php echo BASEURL; ?>about" class="nav-dropdown-link <?php echo $this->scheme['color_scheme'] == null ? 'menu-scheme-0' : 'menu-'.$this->scheme['color_scheme']; ?>">Rólam</a>
+                <a href="<?php echo BASEURL; ?>About" class="nav-dropdown-link <?php echo $this->scheme['color_scheme'] == null ? 'menu-scheme-0' : 'menu-'.$this->scheme['color_scheme']; ?>">Rólam</a>
                 <a href="" class="nav-dropdown-link lit-text-heavy <?php echo $this->scheme['color_scheme'] == null ? 'menu-scheme-0' : 'menu-'.$this->scheme['color_scheme']; ?>">Letöltések</a>
                 <a href="" class="nav-dropdown-link lit-text-heavy <?php echo $this->scheme['color_scheme'] == null ? 'menu-scheme-0' : 'menu-'.$this->scheme['color_scheme']; ?>">Galéria</a>
             </nav>
