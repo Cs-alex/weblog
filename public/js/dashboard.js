@@ -29,7 +29,7 @@ $(document).ready(function() {
         $('#options').addClass('hidden');
         $.ajax({
             type: 'POST',
-            url: '/WeBlog/dashboard/order',
+            url: '/Dashboard/order',
             data: { data: $(this).data('option') },
             success: function(result) {
                 console.log(result);

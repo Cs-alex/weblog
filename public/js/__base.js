@@ -11,7 +11,7 @@ $(document).ready(function() {
     // Kereső
     $('#search-input').keypress(function(e) {
         if (e.keyCode == 13) {
-            window.location.href = '//' + window.location.host + '/WeBlog/dashboard/search?q=' + $('#search-input').val().replace(' ', '+');
+            window.location.href = '//' + window.location.host + '/Dashboard/search?q=' + $('#search-input').val().replace(' ', '+');
         }
     });
 
@@ -21,7 +21,7 @@ $(document).ready(function() {
         var oldScheme = $('body').attr('class').replace('body-', '');
         $.ajax({
             type: 'POST',
-            url: '/WeBlog/' + window.location.pathname.split('/')[2] + '/setScheme',
+            url: '/' + window.location.pathname.split('/')[2] + '/setScheme',
             data: { data: scheme },
             success: function() {
                 $('*').each(function() {
