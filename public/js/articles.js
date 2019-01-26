@@ -7,29 +7,31 @@ $(document).ready(function() {
         var seo = window.location.pathname.split('/');
         $.ajax({
             type: 'POST',
-            url: '/Articles/articleVote/' + seo[4],
+            url: '/WeBlog_Laravel/public/vote/' + seo[4],
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: vote },
             success: function(result) {
-                var count = JSON.parse(result);
-                if (vote == 'upvote') {
-                    if ($this.hasClass('upvoted')) {
-                        $this.removeClass('upvoted');
-                    } else {
-                        $this.addClass('upvoted');
-                    }
-                    $('.downvote').removeClass('downvoted');
-                    $this.siblings('.upvote-count').text(count.upvoteCount);
-                    $this.siblings('.downvote-count').text(count.downvoteCount);
-                } else {
-                    if ($this.hasClass('downvoted')) {
-                        $this.removeClass('downvoted');
-                    } else {
-                        $this.addClass('downvoted');
-                    }
-                    $('.upvote').removeClass('upvoted');
-                    $this.siblings('.upvote-count').text(count.upvoteCount);
-                    $this.siblings('.downvote-count').text(count.downvoteCount);
-                }
+                console.log(result);
+                // var count = JSON.parse(result);
+                // if (vote == 'upvote') {
+                //     if ($this.hasClass('upvoted')) {
+                //         $this.removeClass('upvoted');
+                //     } else {
+                //         $this.addClass('upvoted');
+                //     }
+                //     $('.downvote').removeClass('downvoted');
+                //     $this.siblings('.upvote-count').text(count.upvoteCount);
+                //     $this.siblings('.downvote-count').text(count.downvoteCount);
+                // } else {
+                //     if ($this.hasClass('downvoted')) {
+                //         $this.removeClass('downvoted');
+                //     } else {
+                //         $this.addClass('downvoted');
+                //     }
+                //     $('.upvote').removeClass('upvoted');
+                //     $this.siblings('.upvote-count').text(count.upvoteCount);
+                //     $this.siblings('.downvote-count').text(count.downvoteCount);
+                // }
             }
         });
     });

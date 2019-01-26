@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-    console.log('/' + window.location.pathname.split('/')[2] + '/setScheme');
-
     // Header menü és beállítások hover
     $('.nav-wrapper').hover(function() {
         $('.nav-dropdown').hide();
@@ -13,7 +11,7 @@ $(document).ready(function() {
     // Kereső
     $('#search-input').keypress(function(e) {
         if (e.keyCode == 13) {
-            window.location.href = '//' + window.location.host + '/Dashboard/search?q=' + $('#search-input').val().replace(' ', '+');
+            window.location.href = '//' + window.location.host + '/WeBlog_Laravel/public/search/' + $('#search-input').val().replace(' ', '+');
         }
     });
 
@@ -23,7 +21,8 @@ $(document).ready(function() {
         var oldScheme = $('body').attr('class').replace('body-', '');
         $.ajax({
             type: 'POST',
-            url: '/' + window.location.pathname.split('/')[2] + '/setScheme',
+            url: '/WeBlog_Laravel/public/scheme',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: scheme },
             success: function() {
                 $('*').each(function() {
