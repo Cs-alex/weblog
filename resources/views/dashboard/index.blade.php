@@ -18,9 +18,9 @@
                                 <i class="fas fa-angle-down select-arrow"></i>
                             </div>
                             <div id="options" class="hidden">
-                                <div class="option {{ $data['scheme']->color_scheme == null ? 'menu-scheme-0' : 'menu-'.$data['scheme']->color_scheme }}" data-option="0">Legújabb</div>
-                                <div class="option {{ $data['scheme']->color_scheme == null ? 'menu-scheme-0' : 'menu-'.$data['scheme']->color_scheme }}" data-option="1">Legkedveltebb</div>
-                                <div class="option {{ $data['scheme']->color_scheme == null ? 'menu-scheme-0' : 'menu-'.$data['scheme']->color_scheme }}" data-option="2">Leglátogatottabb</div>
+                                <a href="<?php echo URL::to('/'); ?>/newest" class="option {{ $data['scheme']->color_scheme == null ? 'menu-scheme-0' : 'menu-'.$data['scheme']->color_scheme }}" data-option="newest">Legújabb</a>
+                                <a href="<?php echo URL::to('/'); ?>/favorite" class="option  {{ $data['scheme']->color_scheme == null ? 'menu-scheme-0' : 'menu-'.$data['scheme']->color_scheme }}" data-option="favorite">Legkedveltebb</a>
+                                <a href="<?php echo URL::to('/'); ?>/most-viewed" class="option {{ $data['scheme']->color_scheme == null ? 'menu-scheme-0' : 'menu-'.$data['scheme']->color_scheme }}" data-option="most-viewed">Leglátogatottabb</a>
                             </div>
                         </div>
                         @foreach ($data['article'] as $article)
@@ -40,11 +40,11 @@
                                         <div class="article-buttons-right">
                                             <div class="d-inline count">
                                                 <i class="fas fa-thumbs-up"></i>
-                                                <span>{{ $article->vote[0]->upvote == null ? 0 : $article->vote[0]->upvote }}</span>
+                                                <span>{{ $article->vote->where('upvote', '=', 1)->count('upvote') == null ? 0 : $article->vote->where('upvote', '=', 1)->count('upvote') }}</span>
                                             </div>
                                             <div class="d-inline count">
                                                 <i class="fas fa-thumbs-down"></i>
-                                                <span>{{ $article->vote[0]->downvote == null ? 0 : $article->vote[0]->downvote }}</span>
+                                                <span>{{ $article->vote->where('downvote', '=', 1)->count('downvote') == null ? 0 : $article->vote->where('downvote', '=', 1)->count('downvote') }}</span>
                                             </div>
                                             <div class="d-inline count">
                                                 <i class="fas fa-comment-alt"></i>

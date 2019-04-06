@@ -32,6 +32,7 @@ footer {
     background-color: white;
 }
 a {
+    display: block;
     text-decoration: none;
 }
 a:hover {
@@ -310,9 +311,11 @@ body.body-scheme-2 {
 /*Egyéb*/
 .footer-scheme-0, .footer-scheme-2 {
     color: #007bff;
+    display: inline;
 }
 .footer-scheme-1 {
     color: silver;
+    display: inline;
 }
 /********** Fontok **********/
 @font-face {

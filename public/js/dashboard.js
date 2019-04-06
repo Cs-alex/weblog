@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    
-    removeSelectedItemFromList($('.select-items').children('span').text());
+
+    var selected = window.location.href.split('/')[5];
 
     // Kategória automatikus bezárása
     $(document).click(function(event) {
@@ -10,7 +10,7 @@ $(document).ready(function() {
         }
     });
 
-    // Kategória kiválasztása + Ajax
+    // Kategória kiválasztása + Ajax sql
     $('.select-items').click(function(event) {
         event.stopPropagation();
         if ($('#options').hasClass('hidden')) {
@@ -22,30 +22,17 @@ $(document).ready(function() {
         }
     });
 
-    $('.option').click(function() {
-        var newText = $(this).text();
-        $('.select-items').children('span').text(newText);
-        removeSelectedItemFromList(newText);
-        $('#options').addClass('hidden');
-        $.ajax({
-            type: 'POST',
-            url: '/WeBlog/dashboard/order',
-            data: { data: $(this).data('option') },
-            success: function(result) {
-                console.log(result);
-            }
-        });
-    });
-
     // Kijelölt kategória eltüntetése a listából
-    function removeSelectedItemFromList(selected) {
-        $('.option').each(function() {
-            var option = $(this).text();
-            if (option == selected) {
-                $('.option').removeClass('hidden');
-                $(this).addClass('hidden');
-            }
-        });
-    }
+    $('.option').each(function() {
+        var option = $(this).data('option');
+        if (selected == '') {
+            $('.option').removeClass('hidden');
+            $(this).addClass('hidden');
+            return false;
+        } else if (option == selected) {
+            $('.option').removeClass('hidden');
+            $(this).addClass('hidden');
+        }
+    });
 
 });

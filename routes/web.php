@@ -13,6 +13,7 @@
 
 Route::get('/', 'Controller@index');
 Route::get('/', 'DashboardController@index');
+Route::get('/{filter}', 'DashboardController@index');
 Route::post('/scheme', 'UserController@scheme');
 Route::post('/vote/{seo}', 'UserController@vote');
 Route::get('/search/{search}', 'DashboardController@search');

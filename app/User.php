@@ -32,22 +32,22 @@ class User extends Model
 
     public function articleVote($vote, $article_id) {
         $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
-        //$visitor = $this->select('id')->where('token', $token)->first();
-        $voted = Vote::select('upvote', 'downvote')->where('visitor_id', 22)->first();
+        $visitor = $this->select('id')->where('token', $token)->first();
+        $voted = Vote::select('upvote', 'downvote')->where([['visitor_id', '=', $visitor['id']], ['article_id', '=', $article_id]])->first();
         if ($voted == NULL) {
-            Vote::insertGetId([$vote => TRUE, 'article_id' => $article_id, 'visitor_id' => 22]);
+            Vote::insertGetId([$vote => TRUE, 'article_id' => $article_id, 'visitor_id' => $visitor['id']]);
         } else {
             if (($voted->upvote != NULL && $vote == 'upvote') || ($voted->downvote != NULL && $vote == 'downvote')) {
-                Vote::where('visitor_id', 22)->delete();
+                Vote::where([['visitor_id', '=', $visitor['id']], ['article_id', '=', $article_id]])->delete();
             } else {
-                // if ($vote == 'upvote') {
-                //     Vote::where(['article_id' => $article_id, 'visitor_id' => 22])->update(['upvote' => 0]);
-                // } else {
-                //     Vote::where(['article_id' => $article_id, 'visitor_id' => 22])->update(['downvote' => 0]);
-                // }
+                if ($vote == 'upvote') {
+                    DB::table('article__vote')->where([['article_id', '=', $article_id], ['visitor_id', '=', $visitor['id']]])->update(['upvote' => 1, 'downvote' => NULL]);
+                } else {
+                    DB::table('article__vote')->where([['article_id', '=', $article_id], ['visitor_id', '=', $visitor['id']]])->update(['upvote' => NULL, 'downvote' => 1]);
+                }
             }
         }
-        $count = new Article();
-        return $count->vote();
+        $count = DB::table('article__vote')->select(DB::raw('count(upvote) as upvote, count(downvote) as downvote'))->where('article_id', $article_id)->first();
+        echo json_encode($count);
     }
 }

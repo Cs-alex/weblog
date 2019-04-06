@@ -24,11 +24,11 @@
                 <button id="scheme-2" class="nav-dropdown-link color-scheme menu-scheme-2">Mély Űr</button>
             </nav>
         </div>
-        <div class="nav-wrapper">
+        <!--<div class="nav-wrapper">
             <div class="header-div" id="flag">
                 <span class="flag-icon-background flag-icon-gb"></span>
             </div>
-        </div>
+        </div>-->
     </div>
     <div class="col-6" id="header-right">
         <div class="input-group {{ $data['scheme']->color_scheme == null ? 'menu-scheme-0' : 'menu-'.$data['scheme']->color_scheme }}" id="search">

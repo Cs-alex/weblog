@@ -38,12 +38,12 @@
                                     <button class="article-btn upvote {{ $data['vote']->upvote == true ? 'upvoted' : '' }}">
                                         <i class="fas fa-arrow-up"></i>
                                     </button>
-                                    <span class="upvote-count">{{ $data['vote']->upvote == null ? 0 : $data['vote']->upvote }}</span>
+                                    <span class="upvote-count">{{ $data['upvote']->upvote == null ? 0 : $data['upvote']->upvote }}</span>
                                     <!-- Dislike -->
                                     <button class="article-btn downvote {{ $data['vote']->downvote == true ? 'downvoted' : '' }}">
                                         <i class="fas fa-arrow-down"></i>
                                     </button>
-                                    <span class="downvote-count">{{ $data['vote']->downvote == null ? 0 : $data['vote']->downvote }}</span>
+                                    <span class="downvote-count">{{ $data['downvote']->downvote == null ? 0 : $data['downvote']->downvote }}</span>
                                     <!-- Comment -->
                                     <div class="article-btn comments" id="new-article-comment">
                                         <i class="fas fa-comment-alt"></i>
@@ -53,7 +53,7 @@
                                     <div class="article-btn visitors">
                                         <i class="fas fa-eye"></i>
                                     </div>
-                                    <span class="visitor-count">{{ $data['visitor'] }}</span>
+                                    <span class="visitor-count">{{ $data['visitor']->visitor }}</span>
                                 </div>
                             </div>
                         </div>
