@@ -1,1 +1,1 @@
-web: heroku index.php
+web: weblog index.php
