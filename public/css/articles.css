@@ -5,7 +5,7 @@ article {
     margin: auto auto 15px auto;
     background-color: rgba(255, 255, 255, 0.8);
 }
-.article-buttons-left {
+.article-buttons-left, .article-buttons-right {
     float: left;
     text-align: left;
 }
@@ -24,6 +24,10 @@ article {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+.divider {
+    width: 100%;
+    height: 50px;
 }
 .upvote, .downvote, .comments, .visitors {
     color: grey;
@@ -86,4 +90,41 @@ article {
     color: grey;
     font-size: 30px;
     margin-right: 10px;
+}
+.date {
+    text-align: right;
+}
+@media only screen and (max-width: 767px) {
+    .article-buttons-left, .article-buttons-right {
+        display: contents;
+    }
+    .date {
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .title {
+        font-size: 3rem;
+    }
+    .article-text {
+        font-size: 1.2rem;
+    }
+    .article-img img {
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .article-buttons-left, .article-buttons-right, .date {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    .article-text {
+        font-size: 1.1rem;
+    }
 }

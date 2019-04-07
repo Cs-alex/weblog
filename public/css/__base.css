@@ -19,7 +19,6 @@ header #header-right {
 }
 header img {
     height: 70px;
-    margin-right: 15px;
 }
 footer {
     bottom: 0;
@@ -100,13 +99,14 @@ button:focus, input:focus {
 .nav-dropdown {
     left: 0;
     top: 70px;
+    width: 800px;
     z-index: 2;
     display: none;
     position: absolute;
 }
 .nav-dropdown-link {
     float: left;
-    width: 250px;
+    width: 33.3%;
     height: 60px;
     color: black;
     font-size: 3rem;
@@ -140,8 +140,11 @@ button:focus, input:focus {
     border-right: 20px solid transparent;
     border-top: 20px solid rgb(235, 235, 235);
 }
+#logo {
+    width: 150px;
+}
 #search {
-    width: 50%;
+    width: 400px;
     margin: 15px;
     height: 40px;
 }
@@ -210,14 +213,15 @@ button:focus, input:focus {
 }
 /********** Színsémák **********/
 /*Body*/
-.body-scheme-1 {
-    background: url("../img/black_bg_img.jpg") no-repeat;
+body.body-scheme-1 {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-image: url("../img/black_bg_img.jpg");
 }
 body.body-scheme-2 {
-    background-size: cover;
-}
-.body-scheme-2 {
-    background: url("../img/space_bg_img.jpeg") no-repeat;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-image: url("../img/space_bg_img.jpeg");
 }
 /*Header-font*/
 .header-scheme-0 {
@@ -316,6 +320,84 @@ body.body-scheme-2 {
 .footer-scheme-1 {
     color: silver;
     display: inline;
+}
+footer span, footer a {
+    margin-right: 10px;
+}
+/********** Mobile **********/
+@media only screen and (max-width: 1100px) {
+    #search {
+        width: 100%;
+    }
+    .nav-wrapper {
+        width: 25%;
+    }
+    #logo, #settings, .header-div {
+        width: 25%;
+        display: initial;
+    }
+    #flag {
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 850px) {
+    .nav-dropdown {
+        width: 100%;
+    }
+    .nav-dropdown-link {
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 500px) {
+    #header-left {
+        height: 60px;
+    }
+    #search {
+        width: 100%;
+    }
+    .nav-wrapper {
+        width: 25%;
+    }
+    #logo, #settings, .header-div {
+        width: 25%;
+        display: initial;
+    }
+    #flag {
+        width: 100%;
+        height: 60px;
+    }
+    #logo img {
+        height: 60px;
+    }
+    .header-div i {
+        font-size: 50px;
+    }
+    #flag span {
+        width: 55px;
+    }
+}
+@media only screen and (max-width: 400px) {
+    #header-left {
+        height: 50px;
+    }
+    #select {
+        display: inline-block;
+    }
+    #logo img {
+        height: 50px;
+    }
+    .nav-dropdown {
+        top: 50px;
+    }
+    .header-div i {
+        font-size: 40px;
+    }
+    #flag {
+        height: 50px;
+    }
+    #flag span {
+        width: 45px;
+    }
 }
 /********** Fontok **********/
 @font-face {

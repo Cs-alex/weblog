@@ -7,7 +7,7 @@ $(document).ready(function() {
         var seo = window.location.pathname.split('/');
         $.ajax({
             type: 'POST',
-            url: '/WeBlog_Laravel/public/vote/' + seo[4],
+            url: '/weblog/vote/' + seo[4],
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: vote },
             success: function(result) {

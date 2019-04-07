@@ -46,6 +46,8 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        app()->setlocale(session('lang'));
+        echo session('lang');
         return parent::render($request, $exception);
     }
 }

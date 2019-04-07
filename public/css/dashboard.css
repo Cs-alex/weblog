@@ -13,6 +13,7 @@ article {
     flex-direction: column;
 }
 .title {
+    display: inline;
     transition: all 0.2s ease;
 }
 .title:hover {
@@ -39,6 +40,7 @@ article {
     text-align: right;
 }
 .article-small-img {
+    height: 100%;
     overflow: hidden;
 }
 .article-small-img img {
@@ -84,4 +86,14 @@ article {
     top: 50px;
     z-index: 1;
     position: absolute;
+}
+@media only screen and (max-width: 1200px) {
+    .title {
+        font-size: 3rem;
+    }
+}
+@media only screen and (max-width: 920px) {
+    .title {
+        font-size: 2rem;
+    }
 }

@@ -3,57 +3,102 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Article;
 use App\Component;
 use App\Vote;
 use App\Visitor;
 use App\User;
+use Redirect;
 use Request;
 
 class DashboardController extends Controller
 {
     public function index() {
-        $user = new User();
-        $user->setUser();
+        $this->basics();
+        $pages = array('', 'newest', 'favorite', 'most-viewed');
+        $data['lang'] = session('lang');
         $data['scheme'] = DB::table('visitors')->select('color_scheme')->first();
-        if (Request::segment(1) == NULL || Request::segment(1) == 'newest') {
-            $data['article'] = DB::table('article')
-                                ->join('article__component', 'article.id', '=', 'article__component.article_id')
-                                ->join('article__visitor', 'article.id', '=', 'article__visitor.article_id')
-                                ->join('article__vote', 'article.id', '=', 'article__vote.article_id')
-                                ->select('*')
-                                ->groupBy('article.id')
-                                //->sortByDesc('article__vote.upvote')
-                                ->get();
-        } elseif (Request::segment(1) == 'favorite') {
-            $data['article'] = DB::table('article')
-                                ->join('article__component', 'article.id', '=', 'article__component.article_id')
-                                ->join('article__visitor', 'article.id', '=', 'article__visitor.article_id')
-                                ->join('article__vote', 'article.id', '=', 'article__vote.article_id')
-                                ->select('article.*', DB::raw("COUNT(article__vote.upvote) AS voteCount GROUP BY article__vote.article_id"))
-                                ->groupBy('article.id')
-                                ->orderBy('voteCount', 'ASC')
-                                ->get();
-            /*$data['article'] = Article::with('article__vote')->get()->sortBy(function($count) {
-                return count($count->article__vote->upvote);
-            });*/
-            print_r($data['article']);
-        } elseif (Request::segment(1) == 'most-visited') {
-            $data['article'] = Article::all()->sortByDesc('created_at');
+        if (in_array(Request::segment(2), $pages)) {
+            if (Request::segment(2) == NULL || Request::segment(2) == 'newest') {
+                $order_by = "ORDER BY article.created_at DESC";
+            } elseif (Request::segment(2) == 'favorite') {
+                $order_by = "ORDER BY upvote DESC";
+            } elseif (Request::segment(2) == 'most-viewed') {
+                $order_by = "ORDER BY visitor DESC";
+            }
+            $data['article'] = DB::select("
+                SELECT article.*,
+                (SELECT article__component.article_text_".$data['lang']."
+                    FROM article__component
+                    WHERE article__component.article_text_".$data['lang']." IS NOT NULL AND article__component.article_id = article.id
+                    LIMIT 1) AS txt,
+                (SELECT article__component.article_image
+                    FROM article__component
+                    WHERE article__component.article_image IS NOT NULL AND article__component.article_id = article.id
+                    LIMIT 1) AS img,
+                (SELECT COUNT(article__vote.upvote)
+                    FROM article__vote
+                    WHERE article__vote.article_id = article.id) AS upvote,
+                (SELECT COUNT(article__vote.downvote)
+                    FROM article__vote
+                    WHERE article__vote.article_id = article.id) AS downvote,
+                (SELECT COUNT(article__visitor.visitor_id)
+                    FROM article__visitor
+                    WHERE article__visitor.article_id = article.id) AS visitor
+                FROM article
+                GROUP BY article.id
+                ".$order_by."
+            ");
+            return view('dashboard.index')->with('data', $data);
+        } elseif (Request::segment(2) == 'about') {
+            return view('about.index')->with('data', $data);
+        } else {
+            return view('errors.404')->with('data', $data);
         }
-        //return view('dashboard.index')->with('data', $data);
     }
 
     public function search($search) {
-        $result = DB::table('article')->select('article.id')->join('article__component', 'article__component.article_id', '=', 'article.id')->where('article.title', 'like', '%'.$search.'%')->orWhere('article__component.article_text', 'like', '%'.$search.'%')->get();
-        for($i = 0; $i < count($result); $i++) {
-            $id[] = preg_replace( '/[^\d]/', '', json_encode($result[$i]));
-        }
-        $data = array(
-            'scheme' => DB::table('visitors')->select('color_scheme')->first(),
-            'article' => Article::whereIn('id', array_unique($id))->orderBy('created_at', 'DESC')->get()
-        );
+        $this->basics();
+        $data['lang'] = session('lang');
+        $data['scheme'] = DB::table('visitors')->select('color_scheme')->first();
+        $data['article'] = DB::select("
+            SELECT article.*,
+            (SELECT article__component.article_text_".$data['lang']."
+                FROM article__component
+                WHERE article__component.article_text_".$data['lang']." IS NOT NULL AND article__component.article_id = article.id
+                LIMIT 1) AS txt,
+            (SELECT article__component.article_image
+                FROM article__component
+                WHERE article__component.article_image IS NOT NULL AND article__component.article_id = article.id
+                LIMIT 1) AS img,
+            (SELECT COUNT(article__vote.upvote)
+                FROM article__vote
+                WHERE article__vote.article_id = article.id) AS upvote,
+            (SELECT COUNT(article__vote.downvote)
+                FROM article__vote
+                WHERE article__vote.article_id = article.id) AS downvote,
+            (SELECT COUNT(article__visitor.visitor_id)
+                FROM article__visitor
+                WHERE article__visitor.article_id = article.id) AS visitor
+            FROM article
+            INNER JOIN article__component ON article.id = article__component.article_id
+            WHERE article.title_".$data['lang']." LIKE '%".Request::segment(3)."%' OR article__component.article_text_".$data['lang']." LIKE '%".Request::segment(3)."%'
+            GROUP BY article.id
+            ORDER BY article.created_at DESC
+        ");
         return view('dashboard.index')->with('data', $data);
+    }
+
+    public function basics() {
+        $user = new User();
+        $user->setUser();
+        if (Request::segment(1) == 'en') {
+            session(['lang' => 'en']);
+        } else {
+            session(['lang' => 'hu']);
+        }
+        App()->setlocale(session('lang'));
     }
 }

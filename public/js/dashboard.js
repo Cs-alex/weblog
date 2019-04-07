@@ -2,6 +2,15 @@ $(document).ready(function() {
 
     var selected = window.location.href.split('/')[5];
 
+    // Legújabb automatikus eltüntetése a listából
+    if (window.location.href.split('/')[4] != '') {
+        $('.option').each(function() {
+            if ($(this).data('option') == 'newest') {
+                $(this).addClass('hidden');
+            }
+        });
+    }
+
     // Kategória automatikus bezárása
     $(document).click(function(event) {
         if (!$(event.target).is('.select-items, .option')) {
@@ -32,6 +41,7 @@ $(document).ready(function() {
         } else if (option == selected) {
             $('.option').removeClass('hidden');
             $(this).addClass('hidden');
+            $('.select-items').children('span').text($(this).text());
         }
     });
 

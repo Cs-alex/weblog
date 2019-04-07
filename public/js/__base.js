@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    var lang = window.location.href.split('/')[4];
+
     // Header menü és beállítások hover
     $('.nav-wrapper').hover(function() {
         $('.nav-dropdown').hide();
@@ -11,17 +13,18 @@ $(document).ready(function() {
     // Kereső
     $('#search-input').keypress(function(e) {
         if (e.keyCode == 13) {
-            window.location.href = '//' + window.location.host + '/WeBlog_Laravel/public/search/' + $('#search-input').val().replace(' ', '+');
+            window.location.href = '//' + window.location.host + '/weblog/' + lang + '/search/' + $('#search-input').val().replace(' ', '+');
         }
     });
 
     // Színsémák beállítása
     $('.color-scheme').click(function() {
+        var src = ($('.divider')[0]) ? $('.divider').attr('src').split('divider')[0] : '';
         var scheme = $(this).attr('id');
         var oldScheme = $('body').attr('class').replace('body-', '');
         $.ajax({
             type: 'POST',
-            url: '/WeBlog_Laravel/public/scheme',
+            url: '/weblog/scheme',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: scheme },
             success: function() {
@@ -35,21 +38,33 @@ $(document).ready(function() {
                         $('#search, .option, footer').addClass('menu-' + scheme);
                         $('article').removeClass(oldScheme);
                         $('article').addClass(scheme);
-                        $('.title').removeClass('text-large-' + oldScheme);
-                        $('.title').addClass('text-large-' + scheme);
+                        $('.title, .intro-title, .about').removeClass('text-large-' + oldScheme);
+                        $('.title, .intro-title, .about').addClass('text-large-' + scheme);
                         $('#search-input, .select-items').removeClass('search-' + oldScheme);
                         $('#search-input, .select-items').addClass('search-' + scheme);
                         $('#links-dropdown').children('.nav-dropdown-link').removeClass('menu-' + oldScheme);
                         $('#links-dropdown').children('.nav-dropdown-link').addClass('menu-' + scheme);
-                        $('.text-small').removeClass('text-small-' + oldScheme);
-                        $('.text-small').addClass('text-small-' + scheme);
+                        $('.text-small, .intro-text, .poem, .profession').removeClass('text-small-' + oldScheme);
+                        $('.text-small, .intro-text, .poem, .profession').addClass('text-small-' + scheme);
                         $('footer').children('a').removeClass('footer-' + oldScheme);
                         $('footer').children('a').addClass('footer-' + scheme);
+                        ($('.divider')[0]) ? $('.divider').attr('src', src + 'divider-' + scheme + '.png') : '';
                     }
-                })
+                });
                 $('.nav-dropdown').hide();
             }
         });
+    });
+
+    // Nyelv
+    if (lang == 'hu') {
+        $('#flag').data('lang', 'en').children('span').removeClass('flag-icon-hu').addClass('flag-icon-gb');
+    } else if (lang == 'en') {
+        $('#flag').data('lang', 'hu').children('span').removeClass('flag-icon-gb').addClass('flag-icon-hu');
+    }
+
+    $('#flag').click(function() {
+        window.location.href = window.location.href.split(lang)[0] + $(this).data('lang');
     });
 
 });
