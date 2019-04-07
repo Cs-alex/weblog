@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'asset_url' => env('ASSET_URL', null),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
@@ -117,7 +119,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', 'base64:lXrXmLUY4QIxxs1WCL9xuOG0q+7wPdCKQKBJVOMiUB4='),
+    'key' => env('APP_KEY', 'base64:3h8s/pYOAG2sB25HLAK6po6ICZ2PssdYvBaG/JFkMpA='),
 
     'cipher' => 'AES-256-CBC',
 
