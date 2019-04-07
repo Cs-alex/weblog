@@ -16,9 +16,6 @@ use Request;
 class DashboardController extends Controller
 {
     public function index() {
-		$data = array();
-		return view('dashboard.index')->with('data', $data);
-		/*
         $this->basics();
         $pages = array('', 'newest', 'favorite', 'most-viewed');
         $data['lang'] = session('lang');
@@ -60,7 +57,6 @@ class DashboardController extends Controller
         } else {
             return view('errors.404')->with('data', $data);
         }
-		*/
     }
 
     public function search($search) {
