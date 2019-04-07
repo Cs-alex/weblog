@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', 'PageController@index');
-Route::get('/db', 'PageController@dtb');
-
-Route::get('/hey/{id}', function ($id) {
-    return 'Hello '.$id;
-});
+Route::get('/', 'Controller@index');
+Route::get('/', 'DashboardController@index');
+Route::get('/{filter}', 'DashboardController@index');
+Route::post('/scheme', 'UserController@scheme');
+Route::post('/vote/{seo}', 'UserController@vote');
+Route::get('/search/{search}', 'DashboardController@search');
+Route::get('/article/{article}', 'ArticleController@article');
+Route::get('/about', 'AboutController@index');
