@@ -12,8 +12,7 @@
         <link rel="icon" type="image/png" href="{{asset('public/img/smallicon.png')}}">
         <script type="text/javascript" src="{{asset('public/js/jquery.js')}}"></script>
         <script type="text/javascript" src="{{asset('public/js/__base.js')}}"></script>
+        @yield('content')
         <script id="dsq-count-scr" src="//http-localhost-weblog.disqus.com/count.js" async></script>
-	</head>
-	<body>
     </body>
 </html>
