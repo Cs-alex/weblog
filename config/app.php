@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://csalex-weblog.herokuapp.com/'),
+    'url' => env('APP_URL', 'https://csalex-weblog.herokuapp.com/'),
 
     'asset_url' => env('ASSET_URL', null),
 
