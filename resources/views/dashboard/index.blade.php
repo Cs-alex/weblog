@@ -1,8 +1,8 @@
 @extends('app')
 
 @section('content')
-        <link rel="stylesheet" href="{{ asset('public/css/dashboard.css') }}">
-        <script type="text/javascript" src="{{ asset('public/js/dashboard.js') }}"></script>
+        <link rel="stylesheet" href="{{ secure_asset('css/dashboard.css') }}">
+        <script type="text/javascript" src="{{ secure_asset('js/dashboard.js') }}"></script>
     </head>
     <body class="{{ $data['scheme']->color_scheme == null ? 'body-scheme-0' : 'body-'.$data['scheme']->color_scheme }}">
         <div class="container-fluid text-center">
