@@ -6,6 +6,7 @@
     </head>
     <body class="">
         <div class="container-fluid text-center">
+		{{print_r($data)}}
             hello
         </div>
         @include('footer')
