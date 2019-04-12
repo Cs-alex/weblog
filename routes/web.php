@@ -12,9 +12,3 @@
 */
 
 Route::get('/', 'Controller@index');
-Route::get('/{lang}', 'DashboardController@index');
-Route::get('/{lang}/{filter}', 'DashboardController@index');
-Route::post('/scheme', 'UserController@scheme');
-Route::post('/vote/{seo}', 'UserController@vote');
-Route::get('/{lang}/search/{search}', 'DashboardController@search');
-Route::get('/{lang}/article/{article}', 'ArticleController@article');
