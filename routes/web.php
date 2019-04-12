@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'Controller@index');
-Route::get('/{lang}', 'DashboardController@index');
+Route::get('/', 'DashboardController@index');
