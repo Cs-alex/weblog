@@ -13,7 +13,7 @@ class ArticleController extends Controller
     public function article($lang, $article) {
         $user = new User();
         $user->setUser();
-        $user_id = $user->getUserId();
+        $user_id = $user->getUserId()->id;
         if ($lang == 'en') {
             session(['lang' => 'en']);
         } else {
