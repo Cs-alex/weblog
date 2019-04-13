@@ -96,7 +96,7 @@ class DashboardController extends Controller
             session(['lang' => 'hu']);
         }
         App()->setlocale(session('lang'));
-		echo session('scheme);
         Session::put('scheme', DB::table('visitors')->select('color_scheme')->first()->color_scheme);
+		echo session('scheme);
     }
 }
