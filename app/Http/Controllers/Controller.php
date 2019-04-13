@@ -13,7 +13,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function index() {
-		echo $_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['REMOTE_ADDR']);
+		echo $_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']);
         //return Redirect::to('https://csalex-weblog.herokuapp.com/hu');
     }
 }
