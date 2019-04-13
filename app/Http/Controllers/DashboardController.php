@@ -90,7 +90,6 @@ class DashboardController extends Controller
     public function basics() {
         $user = new User();
         $user->setUser();
-		print_r($user);
         if (Request::segment(1) == 'en') {
             session(['lang' => 'en']);
         } else {
