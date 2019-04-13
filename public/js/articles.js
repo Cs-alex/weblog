@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	var lang = window.location.href.split('/')[1];
+	var lang = window.location.href.split('/');
 	console.log(lang);
 
     // Like és dislike
