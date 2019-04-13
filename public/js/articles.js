@@ -8,7 +8,7 @@ $(document).ready(function() {
         var vote = $(this).attr('class').split(' ')[1];
         $.ajax({
             type: 'POST',
-            url: '/vote/' + seo[3],
+            url: seo[1] + '/vote/' + seo[3],
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: vote },
             success: function(result) {
