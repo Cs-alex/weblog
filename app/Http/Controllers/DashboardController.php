@@ -89,14 +89,14 @@ class DashboardController extends Controller
 
     public function basics() {
         $user = new User();
-        $user->setUser();
+        $x = $user->setUser();
         if (Request::segment(1) == 'en') {
             session(['lang' => 'en']);
         } else {
             session(['lang' => 'hu']);
         }
         App()->setlocale(session('lang'));
-        Session::put('scheme', DB::table('visitors')->select('color_scheme')->first()->color_scheme);
-		echo Session::get('scheme');
+        Session::put('scheme', DB::table('visitors')->select('color_scheme')->where()->first()->color_scheme);
+		echo Session::get('scheme').'+'.$x;
     }
 }
