@@ -17,6 +17,7 @@ class DashboardController extends Controller
 {
     public function index() {
         $this->basics();
+		print_r($user);
         $pages = array('', 'newest', 'favorite', 'most-viewed');
         if (in_array(Request::segment(2), $pages)) {
             if (Request::segment(2) == NULL || Request::segment(2) == 'newest') {
