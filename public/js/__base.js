@@ -24,7 +24,7 @@ $(document).ready(function() {
         var oldScheme = $('body').attr('class').replace('body-', '');
         $.ajax({
             type: 'POST',
-            url: '/scheme',
+            url: lang + '/scheme',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: scheme },
             success: function() {
