@@ -12,7 +12,7 @@ class User extends Model
 
     public function setUser() {
         $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
-		print_r($token);
+		echo md5($_SERVER['REMOTE_ADDR'].' + '.gethostbyaddr($_SERVER['REMOTE_ADDR']));
         $visitor = $this->select('id')->where('token', $token)->first();
         if ($visitor == FALSE) {
             $this->insertGetId(['token' => $token]);
