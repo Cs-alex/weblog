@@ -4,7 +4,6 @@ main {
     max-width: 1400px;
 }
 article {
-    height: 350px;
     padding: 15px 0;
     margin-bottom: 15px;
 }
@@ -23,7 +22,6 @@ article {
     height: 100%;
     font-size: 18px;
     overflow: hidden;
-    column-width: 500px;
 }
 .article-buttons-left {
     width: 50%;
@@ -87,13 +85,41 @@ article {
     z-index: 1;
     position: absolute;
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 992px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    .article-buttons {
+        flex-wrap: wrap-reverse;
+        flex-direction: row-reverse;
+    }
+    .article-buttons-left span {
+        position: static;
+    }
+    .article-buttons-left, .article-buttons-right {
+        width: 100%;
+        text-align: center;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .title-div, .article-text {
+        text-align: center;
+    }
     .title {
         font-size: 3rem;
     }
+    .article-small-img img {
+        width: 350px;
+    }
 }
-@media only screen and (max-width: 920px) {
-    .title {
-        font-size: 2rem;
+@media only screen and (max-width: 450px) {
+    .count {
+        font-size: 25px;
+    }
+    #select, .select-items {
+        width: 100%;
+    }
+    .article-small-img img {
+        width: 100%;
     }
 }

@@ -10,16 +10,14 @@ use App\Component;
 use App\Vote;
 use App\Visitor;
 use App\User;
-use Redirect;
 use Request;
+use Session;
 
 class DashboardController extends Controller
 {
     public function index() {
         $this->basics();
         $pages = array('', 'newest', 'favorite', 'most-viewed');
-        $data['lang'] = session('lang');
-        $data['scheme'] = DB::table('visitors')->select('color_scheme')->first();
         if (in_array(Request::segment(2), $pages)) {
             if (Request::segment(2) == NULL || Request::segment(2) == 'newest') {
                 $order_by = "ORDER BY article.created_at DESC";
@@ -30,9 +28,9 @@ class DashboardController extends Controller
             }
             $data['article'] = DB::select("
                 SELECT article.*,
-                (SELECT article__component.article_text_".$data['lang']."
+                (SELECT article__component.article_text_".session('lang')."
                     FROM article__component
-                    WHERE article__component.article_text_".$data['lang']." IS NOT NULL AND article__component.article_id = article.id
+                    WHERE article__component.article_text_".session('lang')." IS NOT NULL AND article__component.article_id = article.id
                     LIMIT 1) AS txt,
                 (SELECT article__component.article_image
                     FROM article__component
@@ -53,21 +51,19 @@ class DashboardController extends Controller
             ");
             return view('dashboard.index')->with('data', $data);
         } elseif (Request::segment(2) == 'about') {
-            return view('about.index')->with('data', $data);
+            return view('about.index');
         } else {
-            return view('errors.404')->with('data', $data);
+            return view('errors.404');
         }
     }
 
     public function search($search) {
         $this->basics();
-        $data['lang'] = session('lang');
-        $data['scheme'] = DB::table('visitors')->select('color_scheme')->first();
         $data['article'] = DB::select("
             SELECT article.*,
-            (SELECT article__component.article_text_".$data['lang']."
+            (SELECT article__component.article_text_".session('lang')."
                 FROM article__component
-                WHERE article__component.article_text_".$data['lang']." IS NOT NULL AND article__component.article_id = article.id
+                WHERE article__component.article_text_".session('lang')." IS NOT NULL AND article__component.article_id = article.id
                 LIMIT 1) AS txt,
             (SELECT article__component.article_image
                 FROM article__component
@@ -84,7 +80,7 @@ class DashboardController extends Controller
                 WHERE article__visitor.article_id = article.id) AS visitor
             FROM article
             INNER JOIN article__component ON article.id = article__component.article_id
-            WHERE article.title_".$data['lang']." LIKE '%".Request::segment(3)."%' OR article__component.article_text_".$data['lang']." LIKE '%".Request::segment(3)."%'
+            WHERE article.title_".session('lang')." LIKE '%".Request::segment(3)."%' OR article__component.article_text_".session('lang')." LIKE '%".Request::segment(3)."%'
             GROUP BY article.id
             ORDER BY article.created_at DESC
         ");
@@ -100,5 +96,6 @@ class DashboardController extends Controller
             session(['lang' => 'hu']);
         }
         App()->setlocale(session('lang'));
+        Session::put('scheme', DB::table('visitors')->select('color_scheme')->first()->color_scheme);
     }
 }

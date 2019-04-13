@@ -2,6 +2,9 @@ main {
     margin: auto;
     max-width: 90%;
 }
+article {
+    margin-bottom: 15px;
+}
 article .row:nth-child(2) {
     margin-top: -20px;
 }
@@ -14,4 +17,19 @@ article .row:nth-child(2) {
 }
 .intro-text {
     padding: 0 15px;
+}
+.divider {
+    width: 100%;
+    padding: 0 30px;
+}
+@media only screen and (max-width: 450px) {
+    .title, .about {
+        font-size: 2.5rem;
+    }
+    .profession, .poem {
+        font-size: 1.5rem;
+    }
+    .intro-text {
+        font-size: 1.5rem;
+    }
 }

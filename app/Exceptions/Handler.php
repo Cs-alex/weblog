@@ -2,6 +2,9 @@
 
 namespace App\Exceptions;
 
+use App;
+use Request;
+use Session;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -46,8 +49,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        app()->setlocale(session('lang'));
-        echo session('lang');
+        if (Request::segment(1) == 'en') {
+            App::setLocale('en');
+        } else {
+            App::setLocale('hu');
+        }
         return parent::render($request, $exception);
     }
 }

@@ -3,8 +3,7 @@
 @section('content')
         <link rel="stylesheet" href="{{ secure_asset('css/error.css') }}">
     </head>
-    <!-- $data['scheme']->color_scheme == null ? 'body-scheme-0' : 'body-'.$data['scheme']->color_scheme -->
-    <body class="">
+    <body class="{{ Session::has('scheme') ? 'body-'.Session::get('scheme') : 'body-scheme-0' }}">
         <div class="container-fluid text-center">
             <main>
                 <div class="error-wrapper">
