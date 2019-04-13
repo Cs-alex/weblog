@@ -18,7 +18,6 @@ class User extends Model
         } else {
             $this->where('token', $token)->update(['last_login' => DB::raw('now()')]);
         }
-		return $visitor;
     }
 
     public function getUserId() {
