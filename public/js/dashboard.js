@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     var selected = window.location.href.split('/')[5];
-
+console.log(selected);
     // Legújabb automatikus eltüntetése a listából
     if (window.location.href.split('/')[4] != '') {
         $('.option').each(function() {
