@@ -12,7 +12,6 @@ class User extends Model
 
     public function setUser() {
         $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
-		echo $token;
         $visitor = $this->select('id')->where('token', $token)->first();
         if ($visitor == FALSE) {
             $this->insertGetId(['token' => $token]);
@@ -22,17 +21,17 @@ class User extends Model
     }
 
     public function getUserId() {
-        $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
+        $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
         return $visitor = $this->select('id')->where('token', $token)->first();
     }
 
     public function setScheme($scheme) {
-        $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
+        $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
         $this->where('token', $token)->update(['color_scheme' => $scheme]);
     }
 
     public function articleVote($vote, $article_id) {
-        $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
+        $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
         $visitor = $this->select('id')->where('token', $token)->first();
         $voted = Vote::select('upvote', 'downvote')->where([['visitor_id', '=', $visitor['id']], ['article_id', '=', $article_id]])->first();
         if ($voted == NULL) {
