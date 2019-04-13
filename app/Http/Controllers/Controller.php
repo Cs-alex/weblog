@@ -13,6 +13,6 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public function index() {
-        return Redirect::to('http://csalex-weblog.herokuapp.com/hu');
+        return Redirect::to('https://csalex-weblog.herokuapp.com/hu');
     }
 }
