@@ -9,6 +9,7 @@ use App\User;
 class UserController extends Controller
 {
     public function scheme() {
+		die;
         $user = new User();
         $user->setScheme($_POST['data']);
     }
