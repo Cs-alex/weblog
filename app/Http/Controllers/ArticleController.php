@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL::forceScheme('https');
 use App\Article;
 use App\User;
 use Request;

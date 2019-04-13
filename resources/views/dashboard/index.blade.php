@@ -18,9 +18,9 @@
                                 <i class="fas fa-angle-down select-arrow"></i>
                             </div>
                             <div id="options" class="hidden">
-                                <a href="<?php echo secure_url(URL::to('/')); ?>/{{ session('lang') }}/newest" class="option {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}" data-option="newest">@lang('dashboard.newest')</a>
-                                <a href="<?php echo secure_url(URL::to('/')); ?>/{{ session('lang') }}/favorite" class="option  {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}" data-option="favorite">@lang('dashboard.favorite')</a>
-                                <a href="<?php echo secure_url(URL::to('/')); ?>/{{ session('lang') }}/most-viewed" class="option {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}" data-option="most-viewed">@lang('dashboard.most_viewed')</a>
+                                <a href="<?php echo URL::to('/'); ?>/{{ session('lang') }}/newest" class="option {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}" data-option="newest">@lang('dashboard.newest')</a>
+                                <a href="<?php echo URL::to('/'); ?>/{{ session('lang') }}/favorite" class="option  {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}" data-option="favorite">@lang('dashboard.favorite')</a>
+                                <a href="<?php echo URL::to('/'); ?>/{{ session('lang') }}/most-viewed" class="option {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}" data-option="most-viewed">@lang('dashboard.most_viewed')</a>
                             </div>
                         </div>
                         @foreach ($data['article'] as $article)
