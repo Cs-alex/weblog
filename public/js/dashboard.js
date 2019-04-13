@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
     var selected = window.location.href.split('/')[4];
-console.log(selected);
+
     // Legújabb automatikus eltüntetése a listából
-    if (window.location.href.split('/')[4] != '') {
+    if (selected != '') {
         $('.option').each(function() {
             if ($(this).data('option') == 'newest') {
                 $(this).addClass('hidden');
