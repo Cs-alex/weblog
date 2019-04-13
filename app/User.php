@@ -11,7 +11,8 @@ class User extends Model
     public $timestamps = FALSE;
 
     public function setUser() {
-        $token = md5($_SERVER['REMOTE_ADDR'].gethostbyaddr($_SERVER['REMOTE_ADDR']));
+        $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
+		echo $token;
         $visitor = $this->select('id')->where('token', $token)->first();
         if ($visitor == FALSE) {
             $this->insertGetId(['token' => $token]);
