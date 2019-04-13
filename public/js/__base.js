@@ -13,7 +13,7 @@ $(document).ready(function() {
     // Kereső
     $('#search-input').keypress(function(e) {
         if (e.keyCode == 13) {
-            window.location.href = '//' + window.location.host + lang + '/search/' + $('#search-input').val().replace(' ', '+');
+            window.location.href = '//' + window.location.host + '/' + lang + '/search/' + $('#search-input').val().replace(' ', '+');
         }
     });
 
