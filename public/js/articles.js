@@ -1,16 +1,14 @@
 $(document).ready(function() {
 	
-	var lang = window.location.href.split('/')[3];
+	var seo = window.location.pathname.split('/');
 
     // Like és dislike
     $('.upvote, .downvote').click(function() {
         var $this = $(this);
         var vote = $(this).attr('class').split(' ')[1];
-        var seo = window.location.pathname.split('/');
-		console.log(seo);
         $.ajax({
             type: 'POST',
-            url: lang + '/vote/' + seo[3],
+            url: '/vote/' + seo[3],
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: vote },
             success: function(result) {
