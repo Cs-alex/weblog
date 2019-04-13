@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	
+	var lang = window.location.href.split('/')[1];
+	console.log(lang);
 
     // Like és dislike
     $('.upvote, .downvote').click(function() {
@@ -7,7 +10,7 @@ $(document).ready(function() {
         var seo = window.location.pathname.split('/');
         $.ajax({
             type: 'POST',
-            url: '/vote/' + seo[3],
+            url: lang + '/vote/' + seo[3],
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: vote },
             success: function(result) {
