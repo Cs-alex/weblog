@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	
-	var seo = window.location.pathname.split('/');
+    var seo = window.location.pathname.split('/');
+    var host = location.protocol + '//' + window.location.hostname + '/';
 
     // Like és dislike
     $('.upvote, .downvote').click(function() {
@@ -8,7 +9,7 @@ $(document).ready(function() {
         var vote = $(this).attr('class').split(' ')[1];
         $.ajax({
             type: 'POST',
-            url: 'https://csalex-weblog.herokuapp.com/' + seo[1] + '/article/vote/' + seo[3],
+            url: host + '/' + seo[1] + '/article/vote/' + seo[3],
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: vote },
             success: function(result) {

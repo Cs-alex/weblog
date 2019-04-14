@@ -14,6 +14,7 @@ class UserController extends Controller
     }
 
     public function vote($seo) {
+        die;
         $article_id = Article::select('id')->where('seo', $seo)->first();
         $user = new User();
         $user->articleVote($_POST['data'], $article_id->id);
