@@ -22,7 +22,6 @@ class ArticleController extends Controller
         App()->setlocale(session('lang'));
         $article_id = $this->getArticleId(session('lang'), $article);
         Session::put('scheme', DB::table('visitors')->select('color_scheme')->where('id', $user_id)->first()->color_scheme);
-        die;
         if ($article_id) {
             $data = array(
                 'article' => Article::where('id', $article_id->id)->first(),
@@ -31,6 +30,7 @@ class ArticleController extends Controller
                 'downvote' => DB::table('article__vote')->select(DB::raw('count(downvote) as downvote'))->where('article_id', $article_id->id)->first(),
                 'visitor' => DB::table('article__visitor')->select(DB::raw('count(visitor_id) as visitor'))->where('article_id', $article_id->id)->first()
             );
+            print_r($data);die;
             return view('articles.index')->with('data', $data);
         } else {
             return view('errors.404');
