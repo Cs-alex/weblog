@@ -43,6 +43,6 @@ class ArticleController extends Controller
     }
 
     public function visited($user_id, $article_id) {
-        visitor::firstOrCreate(['article_id' => $article_id, 'visitor_id' => $user_id]);
+        visitor::firstOrCreate(['article_id' => $article_id, 'visitor_id' => 21]);
     }
 }
