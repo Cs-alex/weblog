@@ -13,11 +13,11 @@ class User extends Model
 
     public function setUser() {
         Session::put('token', md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR'])));
-        $visitor = $this->select('id')->where('token', $token)->first();
+        $visitor = $this->select('id')->where('token', session('token'))->first();
         if ($visitor == FALSE) {
-            $this->insertGetId(['token' => $token]);
+            $this->insertGetId(['token' => session('token')]);
         } else {
-            $this->where('token', $token)->update(['last_login' => DB::raw('now()')]);
+            $this->where('token', session('token'))->update(['last_login' => DB::raw('now()')]);
         }
     }
 
