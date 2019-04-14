@@ -25,7 +25,7 @@
                                         <p>@lang('about.poem_4')<i class="fas fa-quote-right ml-2"></i></p>
                                     </div>
                                 </div>
-                                <img src="{{ asset('public/img/divider-'.session('scheme').'.png') }}" class="divider mx-auto mt-4 mb-2">
+                                <img src="{{ asset('public/img/divider-'.(session('scheme') == null ? 'scheme-0' : session('scheme')).'.png') }}" class="divider mx-auto mt-4 mb-2">
                             </div>
                             <div class="row">
                                 <div class="col-12 {{ session('scheme') == null ? 'text-small-scheme-0' : 'text-small-'.session('scheme') }}">

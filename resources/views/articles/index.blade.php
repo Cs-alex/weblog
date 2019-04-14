@@ -63,7 +63,7 @@
                             <span class="text-small {{ session('scheme') == null ? 'text-small-scheme-0' : 'text-small-'.session('scheme') }}">{{ str_replace('-', '.', $data['article']->created_at) }}</span>
                         </div>
                         <div class="w-100">
-                            <img src="{{ asset('public/img/divider-'.session('scheme').'.png') }}" class="divider">
+                            <img src="{{ asset('public/img/divider-'.(session('scheme') == null ? 'scheme-0' : session('scheme')).'.png') }}" class="divider">
                         </div>
                     </div>
                     <div class="row">
