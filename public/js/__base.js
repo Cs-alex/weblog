@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     var lang = window.location.href.split('/')[3];
-    console.log(window.location.hostname);
+    var host = location.protocol + '//' + window.location.hostname + '/';
 
     // Header menü és beállítások hover
     $('.nav-wrapper').hover(function() {
@@ -25,7 +25,7 @@ $(document).ready(function() {
         var oldScheme = $('body').attr('class').replace('body-', '');
         $.ajax({
             type: 'POST',
-            url: 'https://csalex-weblog.herokuapp.com/' + lang + '/scheme',
+            url: host + lang + '/scheme',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: scheme },
             success: function() {
