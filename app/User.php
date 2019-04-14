@@ -31,6 +31,7 @@ class User extends Model
     }
 
     public function articleVote($vote, $article_id) {
+        echo 'itt';die;
         $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
         $visitor = $this->select('id')->where('token', $token)->first();
         $voted = Vote::select('upvote', 'downvote')->where([['visitor_id', '=', $visitor['id']], ['article_id', '=', $article_id]])->first();
