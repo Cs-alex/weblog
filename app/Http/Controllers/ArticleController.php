@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Article;
-use App\visitor;
+use App\Visitor;
 use App\User;
 use Request;
 use Session;
