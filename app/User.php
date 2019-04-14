@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class User extends Model
 {
@@ -11,7 +12,7 @@ class User extends Model
     public $timestamps = FALSE;
 
     public function setUser() {
-        $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
+        Session::put('token', md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR'])));
         $visitor = $this->select('id')->where('token', $token)->first();
         if ($visitor == FALSE) {
             $this->insertGetId(['token' => $token]);
@@ -21,19 +22,15 @@ class User extends Model
     }
 
     public function getUserId() {
-        $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
-        return $visitor = $this->select('id')->where('token', $token)->first();
+        return $visitor = $this->select('id')->where('token', session('token'))->first();
     }
 
     public function setScheme($scheme) {
-        $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
-        $this->where('token', $token)->update(['color_scheme' => $scheme]);
+        $this->where('token', session('token'))->update(['color_scheme' => $scheme]);
     }
 
     public function articleVote($vote, $article_id) {
-        echo 'itt';die;
-        $token = md5($_SERVER['HTTP_X_FORWARDED_FOR'].' + '.gethostbyaddr($_SERVER['HTTP_X_FORWARDED_FOR']));
-        $visitor = $this->select('id')->where('token', $token)->first();
+        $visitor = $this->select('id')->where('token', session('token'))->first();
         $voted = Vote::select('upvote', 'downvote')->where([['visitor_id', '=', $visitor['id']], ['article_id', '=', $article_id]])->first();
         if ($voted == NULL) {
             Vote::insertGetId([$vote => TRUE, 'article_id' => $article_id, 'visitor_id' => $visitor['id']]);
