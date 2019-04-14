@@ -13,6 +13,7 @@ $(document).ready(function() {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: vote },
             success: function(result) {
+                console.log(result);
                 var count = JSON.parse(result);
                 if (vote == 'upvote') {
                     if ($this.hasClass('upvoted')) {
