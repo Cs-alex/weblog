@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
     var lang = window.location.href.split('/')[3];
+    console.log(window.location.hostname);
 
     // Header menü és beállítások hover
     $('.nav-wrapper').hover(function() {
