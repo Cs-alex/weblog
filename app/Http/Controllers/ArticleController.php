@@ -21,7 +21,8 @@ class ArticleController extends Controller
         }
         App()->setlocale(session('lang'));
         $article_id = $this->getArticleId(session('lang'), $article);
-        Session::put('scheme', DB::table('visitors')->select('color_scheme')->first()->color_scheme);
+        Session::put('scheme', DB::table('visitors')->select('color_scheme')->where('id', $user_id)->first()->color_scheme);
+        die;
         if ($article_id) {
             $data = array(
                 'article' => Article::where('id', $article_id->id)->first(),
