@@ -11,7 +11,10 @@ $(document).ready(function() {
             type: 'POST',
             url: host + seo[1] + '/vote/' + seo[3],
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            data: { data: vote },
+            data: {
+                data: vote,
+                seo: seo[3]
+            },
             success: function(result) {
                 console.log(result);
                 var count = JSON.parse(result);
