@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Article;
+use App\visitor;
 use App\User;
 use Request;
 use Session;
@@ -42,6 +43,6 @@ class ArticleController extends Controller
     }
 
     public function visited($user_id, $article_id) {
-        DB::table('article__visitor')->where('article_id', $article_id)->update(['article_id' => $article_id, 'visitor_id' => $user_id]);
+        visitor::firstOrCreate(['article_id' => $article_id, 'visitor_id' => 20]);
     }
 }
