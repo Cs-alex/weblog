@@ -23,6 +23,7 @@ class ArticleController extends Controller
         $article_id = $this->getArticleId(session('lang'), $article);
         Session::put('scheme', DB::table('visitors')->select('color_scheme')->where('id', $user_id)->first()->color_scheme);
         if ($article_id) {
+            echo $article_id;die;
             $data = array(
                 'article' => Article::where('id', $article_id->id)->first(),
                 'vote' => DB::table('article__vote')->select(DB::raw('count(upvote) as upvote, count(downvote) as downvote'))->where([['visitor_id', '=', $user_id->id], ['article_id', '=', $article_id->id]])->first(),
