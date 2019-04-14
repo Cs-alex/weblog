@@ -9,7 +9,7 @@ $(document).ready(function() {
         var vote = $(this).attr('class').split(' ')[1];
         $.ajax({
             type: 'POST',
-            url: host + '/' + seo[1] + '/article/vote/' + seo[3],
+            url: host + seo[1] + '/article/vote/' + seo[3],
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             data: { data: vote },
             success: function(result) {
