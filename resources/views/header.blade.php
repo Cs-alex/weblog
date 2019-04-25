@@ -1,8 +1,10 @@
 <header class="row">
     <div class="col-xl-6 col-lg-7 col-md-7 col-sm-12" id="header-left">
-        <a href="<?php echo URL::to('/'); ?>/{{ session('lang') }}" id="logo">
-            <img src="<?php echo URL::to('/'); ?>/img/logo.png">
-        </a>
+        <div class="nav-wrapper">
+            <a href="<?php echo URL::to('/'); ?>/{{ session('lang') }}" id="logo">
+                <img src="<?php echo URL::to('/'); ?>/img/logo.png">
+            </a>
+        </div>
         <div class="nav-wrapper">
             <div class="header-div" id="nav">
                 <i class="fas fa-bars header-font {{ session('scheme') == null ? 'header-scheme-0' : 'header-'.session('scheme') }}"></i>
