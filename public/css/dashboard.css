@@ -116,16 +116,12 @@ article {
     .count {
         font-size: 25px;
     }
-    #select, .select-items {
-        width: 100%;
-    }
-    .article-small-img img {
-        width: 100%;
-    }
-}
-@media only screen and (max-width: 400px) {
     #select {
+        width: 100%;
         position: relative;
+    }
+    .select-items, .article-small-img img {
+        width: 100%;
     }
     #options {
         top: auto;
