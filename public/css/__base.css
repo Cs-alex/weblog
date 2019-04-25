@@ -339,6 +339,10 @@ footer span, footer a {
     #flag {
         width: 100%;
     }
+    .header-div {
+        width: 100%;
+        display: inline-table;
+    }
 }
 @media only screen and (max-width: 850px) {
     .nav-dropdown {
