@@ -332,15 +332,12 @@ footer span, footer a {
     .nav-wrapper {
         width: 25%;
     }
-    #logo, #settings, .header-div {
-        width: 25%;
-        display: initial;
-    }
     #flag {
         width: 100%;
     }
     .header-div {
         width: 100%;
+        height: auto;
         display: inline-table;
     }
 }
