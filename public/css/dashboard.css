@@ -131,4 +131,7 @@ article {
         top: auto;
         width: 100%;
     }
+    .option {
+        width: auto;
+    }
 }
