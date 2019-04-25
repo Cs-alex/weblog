@@ -329,13 +329,12 @@ footer span, footer a {
     .nav-wrapper {
         width: 25%;
     }
-    #flag {
-        width: 100%;
-    }
     .header-div {
         width: 100%;
-        height: auto;
         display: inline-table;
+    }
+    #nav, #settings {
+        height: auto;
     }
 }
 @media only screen and (max-width: 850px) {
