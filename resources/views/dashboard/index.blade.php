@@ -32,7 +32,7 @@
                                     <div class="title-div">
                                         <a href="<?php echo URL::to('/').'/'; ?>{{ session('lang') }}/article/{{ session('lang') == 'hu' ? $article->seo_hu : $article->seo_en }}" class="title {{ Session::get('scheme') == null ? 'text-large-scheme-0' : 'text-large-'.Session::get('scheme') }}">{{ session('lang') == 'hu' ? $article->title_hu : $article->title_en }}</a>
                                     </div>
-                                    <p class="article-text">{{ substr($article->txt, 0, 550).'...' }}</p>
+                                    <p class="article-text">{{ preg_replace('/\W\w+\s*(\W*)$/', '...', substr($article->txt, 0, 550)) }}</p>
                                     <div class="article-buttons d-flex">
                                         <div class="article-buttons-left">
                                             <span class="text-small {{ session('scheme') == null ? 'text-small-scheme-0' : 'text-small-'.session('scheme') }}">{{ str_replace('-', '.', $article->created_at) }}</span>

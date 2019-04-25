@@ -123,3 +123,12 @@ article {
         width: 100%;
     }
 }
+@media only screen and (max-width: 400px) {
+    #select {
+        position: relative;
+    }
+    #options {
+        top: auto;
+        width: 100%;
+    }
+}
