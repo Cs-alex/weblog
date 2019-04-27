@@ -13,6 +13,7 @@
                 <a href="<?php echo URL::to('/'); ?>/{{ session('lang') }}/about" class="nav-dropdown-link {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}">@lang('header.about')</a>
                 <a href="" class="nav-dropdown-link lit-text-heavy {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}">@lang('header.download')</a>
                 <a href="" class="nav-dropdown-link lit-text-heavy {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}">@lang('header.gallery')</a>
+                <a href="" class="nav-dropdown-link lit-text-heavy {{ session('scheme') == null ? 'menu-scheme-0' : 'menu-'.session('scheme') }}">@lang('header.poems')</a>
             </nav>
         </div>
         <div id="nav-overlay"></div>
