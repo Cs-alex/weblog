@@ -106,7 +106,7 @@ button:focus, input:focus {
 }
 .nav-dropdown-link {
     float: left;
-    width: 33.3%;
+    width: 25%;
     height: 60px;
     color: black;
     font-size: 3rem;
