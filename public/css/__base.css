@@ -99,7 +99,7 @@ button:focus, input:focus {
 .nav-dropdown {
     left: 0;
     top: 70px;
-    width: 800px;
+    width: 1000px;
     z-index: 2;
     display: none;
     position: absolute;
