@@ -48,7 +48,7 @@
                                             </div>
                                             <div class="d-inline count">
                                                 <i class="fas fa-comment-alt"></i>
-                                                <span class="disqus-comment-count" data-disqus-url="http://localhost/WeBlog/articles/article/{{ session('lang') == 'hu' ? $article->seo_hu : $article->seo_en }}"></span>
+                                                <span class="disqus-comment-count" data-disqus-url="https://csalex-weblog.herokuapp.com/hu/article/{{ session('lang') == 'hu' ? $article->seo_hu : $article->seo_en }}"></span>
                                             </div>
                                             <div class="d-inline count">
                                                 <i class="fas fa-eye"></i>

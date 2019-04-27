@@ -50,7 +50,7 @@
                                     <div class="article-btn comments" id="new-article-comment">
                                         <i class="fas fa-comment-alt"></i>
                                     </div>
-                                    <span class="comment-count disqus-comment-count" data-disqus-url="http://localhost/weblog/article/{{ $data['article']->seo_hu }}"></span>
+                                    <span class="comment-count disqus-comment-count" data-disqus-url="https://csalex-weblog.herokuapp.com/hu/article/{{ $data['article']->seo_hu }}"></span>
                                     <!-- Látogatók -->
                                     <div class="article-btn visitors">
                                         <i class="fas fa-eye"></i>
